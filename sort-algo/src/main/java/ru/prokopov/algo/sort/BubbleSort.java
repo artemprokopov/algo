@@ -7,9 +7,9 @@ public class BubbleSort implements Sort{
     @Override
     public int[] sort(int[] array) {
         int endSort;
+        int temp;
         for (int i = 0; i <= array.length - 1; i++) {
             endSort = 0;
-            int temp;
             for(int j = 0; j < array.length - i - 1; j++ ) {
                 if (array[j] > array[j + 1]) {
                     temp = array[j + 1];
