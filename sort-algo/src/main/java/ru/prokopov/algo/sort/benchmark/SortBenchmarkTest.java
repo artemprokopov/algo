@@ -17,6 +17,7 @@ import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 import ru.prokopov.algo.sort.BubbleSort;
 import ru.prokopov.algo.sort.CocktailSort;
+import ru.prokopov.algo.sort.CombSort;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -24,12 +25,12 @@ import java.util.concurrent.TimeUnit;
 @State(Scope.Benchmark)
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.SECONDS)
-@Fork(value = 1, jvmArgs = {"-Xms2G", "-Xmx2G"})
+@Fork(value = 1, jvmArgs = {"-Xms2G", "-Xmx6G"})
 @Warmup(iterations = 3)
-@Measurement(iterations = 3)
+@Measurement(iterations = 5)
 public class SortBenchmarkTest {
 
-    @Param({"10000"})
+    @Param({ "10000"})
     private int N;
 
     private int[] testArray;
@@ -50,9 +51,15 @@ public class SortBenchmarkTest {
     }
 
     @Benchmark
-    public  void cocktailSortBenchmark() {
+    public void cocktailSortBenchmark() {
         CocktailSort cocktailSort = new CocktailSort();
         cocktailSort.sort(testArray);
+    }
+
+    @Benchmark
+    public void combSortBenchmark() {
+        CombSort combSort = new CombSort();
+        combSort.sort(testArray);
     }
 
     public static void main(String[] args) throws RunnerException {
