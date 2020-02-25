@@ -19,10 +19,9 @@ public class CocktailSort implements Sort {
                     array[i + 1] = temp;
                     continueSort = true;
                 }
-
+                numberIterationBreak++;
             }
             if (!continueSort) {
-                numberIterationBreak = left;
                 break;
             }
             right--;
@@ -34,6 +33,7 @@ public class CocktailSort implements Sort {
                     array[j - 1] = temp;
                     continueSort = true;
                 }
+                numberIterationBreak++;
             }
             left++;
         }

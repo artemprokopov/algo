@@ -23,8 +23,8 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 @State(Scope.Benchmark)
-@BenchmarkMode(Mode.Throughput)
-@OutputTimeUnit(TimeUnit.SECONDS)
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(TimeUnit.MICROSECONDS)
 @Fork(value = 1, jvmArgs = {"-Xms2G", "-Xmx6G"})
 @Warmup(iterations = 3)
 @Measurement(iterations = 5)
@@ -50,13 +50,13 @@ public class SortBenchmarkTest {
         bubbleSort.sort(testArray);
     }
 
-    @Benchmark
+    //@Benchmark
     public void cocktailSortBenchmark() {
         CocktailSort cocktailSort = new CocktailSort();
         cocktailSort.sort(testArray);
     }
 
-    @Benchmark
+    //@Benchmark
     public void combSortBenchmark() {
         CombSort combSort = new CombSort();
         combSort.sort(testArray);

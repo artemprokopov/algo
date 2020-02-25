@@ -17,9 +17,9 @@ public class BubbleSort implements Sort{
                     array[j] = temp;
                     endSort = 1;
                 }
+                numberIterationBreak++;
             }
             if (endSort == 0) {
-                numberIterationBreak = i;
                 break;
             }
         }
