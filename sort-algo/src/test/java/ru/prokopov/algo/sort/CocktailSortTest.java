@@ -39,7 +39,9 @@ class CocktailSortTest {
     @Test
     public void testCocktailSortRandomArray() {
         CocktailSort cocktailSort = new CocktailSort();
+        long startTime = System.nanoTime();
         int[] result = cocktailSort.sort(testArrayRandom1000);
+        System.err.println(System.nanoTime() - startTime);
         assertArrayEquals(exceptedSortArrayRandom1000, result);
     }
 

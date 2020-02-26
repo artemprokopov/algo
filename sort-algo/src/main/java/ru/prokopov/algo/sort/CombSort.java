@@ -10,7 +10,7 @@ public class CombSort implements Sort{
         int step = array.length - 1;
         int temp = 0;
         while (step >= 1) {
-            for (int i = 0; i + step < array.length ; i++) {
+            for (int i = 0; i  < array.length - step ; i++) {
                 if (array[i] > array[i + step]) {
                     temp = array[i];
                     array[i] = array[i + step];
@@ -20,6 +20,9 @@ public class CombSort implements Sort{
             }
             step /= k;
         }
+        BubbleSort bubbleSort = new BubbleSort();
+        bubbleSort.sort(array);
+        numberIterationBreak += bubbleSort.getNumberIterationBreak();
         return array;
     }
 

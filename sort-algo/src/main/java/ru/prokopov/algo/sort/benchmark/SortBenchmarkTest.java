@@ -19,12 +19,14 @@ import ru.prokopov.algo.sort.BubbleSort;
 import ru.prokopov.algo.sort.CocktailSort;
 import ru.prokopov.algo.sort.CombSort;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+
 @State(Scope.Benchmark)
-@BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(TimeUnit.MICROSECONDS)
+@BenchmarkMode(Mode.Throughput)
+@OutputTimeUnit(TimeUnit.SECONDS)
 @Fork(value = 1, jvmArgs = {"-Xms2G", "-Xmx6G"})
 @Warmup(iterations = 3)
 @Measurement(iterations = 5)
@@ -33,15 +35,20 @@ public class SortBenchmarkTest {
     @Param({ "10000"})
     private int N;
 
-    private int[] testArray;
+    private static int[] testArrayBase;
+    {
+        Random random = new Random();
+        testArrayBase = new int[200_000];
+        for (int i = 0; i < testArrayBase.length; i++) {
+            testArrayBase[i] = random.nextInt();
+        }
+    }
+
+    private  int[] testArray;
 
     @Setup
     public void setup() {
-        testArray = new int[N];
-        Random random = new Random();
-        for (int i = 0; i < N; i++) {
-            testArray[i] = random.nextInt();
-        }
+        testArray = Arrays.copyOf(testArrayBase, N);
     }
 
     @Benchmark
@@ -50,13 +57,13 @@ public class SortBenchmarkTest {
         bubbleSort.sort(testArray);
     }
 
-    //@Benchmark
+    @Benchmark
     public void cocktailSortBenchmark() {
         CocktailSort cocktailSort = new CocktailSort();
         cocktailSort.sort(testArray);
     }
 
-    //@Benchmark
+    @Benchmark
     public void combSortBenchmark() {
         CombSort combSort = new CombSort();
         combSort.sort(testArray);
