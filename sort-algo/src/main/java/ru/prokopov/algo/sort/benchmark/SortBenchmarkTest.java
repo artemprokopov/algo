@@ -3,6 +3,7 @@ package ru.prokopov.algo.sort.benchmark;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Fork;
+import org.openjdk.jmh.annotations.Level;
 import org.openjdk.jmh.annotations.Measurement;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
@@ -32,7 +33,7 @@ import java.util.concurrent.TimeUnit;
 @Measurement(iterations = 5)
 public class SortBenchmarkTest {
 
-    @Param({ "10000"})
+    @Param({ "1000"})
     private int N;
 
     private static int[] testArrayBase;
@@ -46,7 +47,7 @@ public class SortBenchmarkTest {
 
     private  int[] testArray;
 
-    @Setup
+    @Setup(Level.Invocation)
     public void setup() {
         testArray = Arrays.copyOf(testArrayBase, N);
     }
