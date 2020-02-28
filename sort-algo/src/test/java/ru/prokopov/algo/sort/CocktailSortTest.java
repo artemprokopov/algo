@@ -20,7 +20,7 @@ class CocktailSortTest {
         }
     }
 
-    private int exceptedNumberIterationExitTestArray2 = 1;
+    private int exceptedNumberIterationExitTestArray2 = 19;
     private int[] exceptedSortArray = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     private int[] exceptedSortArrayRandom1000;
     {
@@ -39,9 +39,7 @@ class CocktailSortTest {
     @Test
     public void testCocktailSortRandomArray() {
         CocktailSort cocktailSort = new CocktailSort();
-        long startTime = System.nanoTime();
         int[] result = cocktailSort.sort(testArrayRandom1000);
-        System.err.println(System.nanoTime() - startTime);
         assertArrayEquals(exceptedSortArrayRandom1000, result);
     }
 
@@ -51,7 +49,6 @@ class CocktailSortTest {
         int[] result = cocktailSort.sort(testArray2);
         int resultNumberIterationBreak = cocktailSort.getNumberIterationBreak();
         assertArrayEquals(exceptedSortArray, result);
-        assertTrue(resultNumberIterationBreak > 0 && resultNumberIterationBreak < result.length );
         assertEquals(exceptedNumberIterationExitTestArray2, resultNumberIterationBreak);
     }
 }
